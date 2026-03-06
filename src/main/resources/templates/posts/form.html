@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nova Ideia – IdeaPlanner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body class="app-body">
+
+  <nav class="nav nav--app">
+    <a th:href="@{/}" class="nav__logo">Idea<span>Planner</span></a>
+    <a th:href="@{/posts}" class="nav__back">← Voltar</a>
+  </nav>
+
+  <main class="form-main">
+    <div class="form-card">
+      <div class="form-card__header">
+        <h1>Nova ideia</h1>
+        <p>Capture sua ideia antes que ela escape.</p>
+      </div>
+
+      <form action="/posts" method="post" class="idea-form">
+
+        <div class="form-group">
+          <label for="titulo">Título</label>
+          <input type="text" id="titulo" name="titulo"
+                 placeholder="Ex: 5 dicas de produtividade para criadores" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="ideia">Ideia / Descrição</label>
+          <textarea id="ideia" name="ideia" rows="4"
+                    placeholder="Descreva o conceito, ângulo ou roteiro do conteúdo..."></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="plataforma">Plataforma</label>
+            <select id="plataforma" name="plataforma">
+              <option value="">Selecione...</option>
+              <option value="Instagram">Instagram</option>
+              <option value="Youtube">YouTube</option>
+              <option value="Blog">Blog</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select id="status" name="status">
+              <option value="">Selecione...</option>
+              <option value="IDEIA">Ideia</option>
+              <option value="RASCUNHO">Rascunho</option>
+              <option value="PUBLICADO">Publicado</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="dataPrevista">Data prevista</label>
+            <input type="date" id="dataPrevista" name="dataPrevista"/>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <a th:href="@{/posts}" class="btn btn--ghost">Cancelar</a>
+          <button type="submit" class="btn btn--primary">Salvar ideia</button>
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+  <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

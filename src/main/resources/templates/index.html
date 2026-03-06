@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IdeaPlanner - Organize seu conteúdo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__logo">Idea<span>Planner</span></div>
+    <a th:href="@{/posts}" class="nav__cta">Acessar app →</a>
+  </nav>
+  <section class="hero">
+    <div class="hero__eyebrow">Planejamento de conteúdo</div>
+    <h1 class="hero__title">
+      Organize suas ideias<br/>
+      <em>de conteúdo</em><br/>
+      em um só lugar.
+    </h1>
+    <p class="hero__sub">Do rascunho à publicação — acompanhe cada post para Instagram, YouTube e Blog sem perder nenhuma ideia pelo caminho.</p>
+    <a th:href="@{/posts/new}" class="btn btn--primary">Criar primeira ideia</a>
+    <div class="hero__scroll">↓</div>
+  </section>
+  <section class="features">
+    <div class="features__label">O que você pode fazer</div>
+    <div class="features__grid">
+      <div class="feature-card" style="--delay:0s">
+        <div class="feature-card__icon">✦</div>
+        <h3>Capturar ideias</h3>
+        <p>Registre cada ideia no momento em que ela chega, com título, plataforma e data prevista.</p>
+      </div>
+      <div class="feature-card" style="--delay:.1s">
+        <div class="feature-card__icon">◈</div>
+        <h3>Acompanhar status</h3>
+        <p>Visualize o que ainda é ideia, o que está em rascunho e o que já foi publicado.</p>
+      </div>
+      <div class="feature-card" style="--delay:.2s">
+        <div class="feature-card__icon">⬡</div>
+        <h3>Editar e evoluir</h3>
+        <p>Altere qualquer campo conforme seu conteúdo evolui — de ideia até publicação.</p>
+      </div>
+      <div class="feature-card" style="--delay:.3s">
+        <div class="feature-card__icon">◎</div>
+        <h3>Multi-plataforma</h3>
+        <p>Instagram, YouTube ou Blog — organize tudo em um único painel sem confusão.</p>
+      </div>
+    </div>
+  </section>
+  <section class="cta-section">
+    <div class="cta-section__inner">
+      <h2>Pronto para parar de perder ideias?</h2>
+      <a th:href="@{/posts}" class="btn btn--outline">Ver meus conteúdos →</a>
+    </div>
+  </section>
+  <footer class="footer">
+    <span>IdeaPlanner © 2026</span>
+  </footer>
+
+  <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

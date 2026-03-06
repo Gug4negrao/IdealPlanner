@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meus Conteúdos – IdeaPlanner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body class="app-body">
+
+  <nav class="nav nav--app">
+    <a th:href="@{/}" class="nav__logo">Idea<span>Planner</span></a>
+    <a th:href="@{/posts/new}" class="btn btn--primary btn--sm">+ Nova ideia</a>
+  </nav>
+
+  <main class="app-main">
+    <div class="page-header">
+      <h1>Meus conteúdos</h1>
+      <p>Nenhum registro ainda.</p>
+    </div>
+
+    <div class="filters">
+      <button class="filter-btn active">Todos</button>
+      <button class="filter-btn">Ideia</button>
+      <button class="filter-btn">Rascunho</button>
+      <button class="filter-btn">Publicado</button>
+    </div>
+
+    <div class="table-wrap">
+      <table class="posts-table">
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Plataforma</th>
+            <th>Status</th>
+            <th>Data prevista</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="5" class="td--empty">
+              Nenhum conteúdo ainda. <a th:href="@{/posts/new}">Criar primeira ideia →</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script th:src="@{/js/main.js}"></script>
+</body>
+</html>
