@@ -22,24 +22,24 @@
         <p>Capture sua ideia antes que ela escape.</p>
       </div>
 
-      <form action="/posts" method="post" class="idea-form">
+      <form action="#" th:action="@{/posts}" method=post th:object="${post}" class="idea-form">
 
         <div class="form-group">
           <label for="titulo">Título</label>
-          <input type="text" id="titulo" name="titulo"
+          <input type="text" id="titulo" name="titulo" th:field="*{titulo}"
                  placeholder="Ex: 5 dicas de produtividade para criadores" required/>
         </div>
 
         <div class="form-group">
           <label for="ideia">Ideia / Descrição</label>
-          <textarea id="ideia" name="ideia" rows="4"
+          <textarea id="ideia" name="ideia" rows="4" th:field="*{ideia}"
                     placeholder="Descreva o conceito, ângulo ou roteiro do conteúdo..."></textarea>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="plataforma">Plataforma</label>
-            <select id="plataforma" name="plataforma">
+            <select id="plataforma" name="plataforma" th:field="*{plataforma}">
               <option value="">Selecione...</option>
               <option value="Instagram">Instagram</option>
               <option value="Youtube">YouTube</option>
@@ -49,7 +49,7 @@
 
           <div class="form-group">
             <label for="status">Status</label>
-            <select id="status" name="status">
+            <select id="status" name="status" th:field="*{status}">
               <option value="">Selecione...</option>
               <option value="IDEIA">Ideia</option>
               <option value="RASCUNHO">Rascunho</option>
@@ -59,7 +59,7 @@
 
           <div class="form-group">
             <label for="dataPrevista">Data prevista</label>
-            <input type="date" id="dataPrevista" name="dataPrevista"/>
+            <input type="date" id="dataPrevista" name="dataPrevista" th:field="*{dataPrevista}"/>
           </div>
         </div>
 

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Sucesso – IdeaPlanner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body class="app-body">
+  <nav class="nav nav--app">
+    <a th:href="@{/}" class="nav__logo">Idea<span>Planner</span></a>
+  </nav>
+  <main class="form-main">
+    <div class="form-card" style="text-align:center; padding: 3rem;">
+      <div style="font-size:3rem; margin-bottom:1rem;">✦</div>
+      <h1 style="font-family: var(--font-display); font-size:2rem; margin-bottom:.75rem;">Ideia salva!</h1>
+      <p style="color: var(--ink-soft); margin-bottom:2rem;">Seu conteúdo foi registrado com sucesso.</p>
+      <a th:href="@{/posts/new}" class="btn btn--primary">Nova ideia</a>
+    </div>
+  </main>
+</body>
+</html>

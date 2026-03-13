@@ -1,8 +1,3 @@
-// ===================================================
-//  IdeaPlanner – main.js
-//  src/main/resources/static/js/main.js
-// ===================================================
-
 // --- Filtro de status na listagem ---
 document.addEventListener('DOMContentLoaded', () => {
   const filterBtns = document.querySelectorAll('.filter-btn');
