@@ -1,6 +1,6 @@
 package com.example.IdeaPlanner.model;
 
-// src/main/java/com/example/IdeaPlanner/model/PostService.java
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,5 +13,13 @@ public class PostService {
 
     public void inserirPost(Post post) {
         postDAO.inserirPost(post);
+    }
+
+     public Post mostrarPost(String uuid){
+        return postDAO.mostrarPost(uuid);
+    }
+
+    public ArrayList<Post> listarPosts(){
+        return postDAO.listarPosts();
     }
 }

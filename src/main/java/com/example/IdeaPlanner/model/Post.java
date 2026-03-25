@@ -1,5 +1,10 @@
 package com.example.IdeaPlanner.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
 // src/main/java/com/example/IdeaPlanner/model/Post.java
 
 public class Post {
@@ -50,4 +55,22 @@ public class Post {
 
     public String getDataPrevista() { return dataPrevista; }
     public void setDataPrevista(String dataPrevista) { this.dataPrevista = dataPrevista; }
+
+    public static Post converter(Map<String,Object> registro){
+        UUID id = (UUID) registro.get("id");
+        String titulo = (String) registro.get("titulo");
+        String ideia = (String) registro.get("ideia");
+        String plataforma = (String) registro.get("plataforma");
+        String status = (String) registro.get("status");
+        String dataPrevista = (String) registro.get("data_prevista");
+        return new Post(id.toString(),titulo, ideia, plataforma, status, dataPrevista);
+    }
+
+    public static ArrayList<Post> converterTodos(List<Map<String,Object>> registros){
+        ArrayList<Post> aux = new ArrayList<>();
+        for(Map<String,Object> registro : registros){
+            aux.add(converter(registro));
+        }
+        return aux;
+    }
 }

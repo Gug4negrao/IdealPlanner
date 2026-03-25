@@ -16,7 +16,10 @@
       <div style="font-size:3rem; margin-bottom:1rem;">✦</div>
       <h1 style="font-family: var(--font-display); font-size:2rem; margin-bottom:.75rem;">Ideia salva!</h1>
       <p style="color: var(--ink-soft); margin-bottom:2rem;">Seu conteúdo foi registrado com sucesso.</p>
-      <a th:href="@{/posts/new}" class="btn btn--primary">Nova ideia</a>
+      <div class="d-flex">
+        <a th:href="@{/posts}" class="btn btn--ghost">Ver todos os posts</a>
+        <a th:href="@{/posts/new}" class="btn btn--primary">Nova ideia</a>
+      </div>
     </div>
   </main>
 </body>

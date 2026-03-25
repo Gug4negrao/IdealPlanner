@@ -42,4 +42,17 @@ document.addEventListener('DOMContentLoaded', () => {
     card.style.transition = `opacity .5s ease ${card.style.getPropertyValue('--delay') || '0s'}, transform .5s ease ${card.style.getPropertyValue('--delay') || '0s'}`;
     observer.observe(card);
   });
+
+  document.querySelectorAll('.td--data').forEach(td => {
+    const partes = td.textContent.trim().split('-');
+    if (partes.length === 3) {
+      td.textContent = `${partes[2]}/${partes[1]}/${partes[0]}`;
+    }
+  });
+
+  document.querySelectorAll('.tr--clickable').forEach(row => {
+    row.addEventListener('click', () => {
+      window.location.href = row.dataset.href;
+    });
+  });
 });

@@ -18,14 +18,14 @@
   <main class="app-main">
     <div class="page-header">
       <h1>Meus conteúdos</h1>
-      <p>Nenhum registro ainda.</p>
+      <p th:text="${posts.size()} + ' registros encontrados'"></p>
     </div>
 
     <div class="filters">
-      <button class="filter-btn active">Todos</button>
-      <button class="filter-btn">Ideia</button>
-      <button class="filter-btn">Rascunho</button>
-      <button class="filter-btn">Publicado</button>
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="IDEIA">Ideia</button>
+      <button class="filter-btn" data-filter="RASCUNHO">Rascunho</button>
+      <button class="filter-btn" data-filter="PUBLICADO">Publicado</button>
     </div>
 
     <div class="table-wrap">
@@ -36,12 +36,28 @@
             <th>Plataforma</th>
             <th>Status</th>
             <th>Data prevista</th>
-            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td colspan="5" class="td--empty">
+          <tr th:each="post : ${posts}" 
+              th:data-status="${post.status}"
+              th:data-href="@{/posts/{id}(id=${post.id})}"
+              class="tr--clickable">       
+            <td class="td--title" th:text="${post.titulo}"></td>
+            <td>
+              <span class="badge"
+                    th:classappend="'badge--' + ${post.plataforma.toLowerCase()}"
+                    th:text="${post.plataforma}"></span>
+            </td>
+            <td>
+              <span class="status-dot"
+                    th:classappend="'status--' + ${post.status.toLowerCase()}"
+                    th:text="${post.status}"></span>
+            </td>
+            <td class="td--data" th:text="${post.dataPrevista}"></td>
+          </tr>
+          <tr th:if="${posts.isEmpty()}">
+            <td colspan="4" class="td--empty">
               Nenhum conteúdo ainda. <a th:href="@{/posts/new}">Criar primeira ideia →</a>
             </td>
           </tr>

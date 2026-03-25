@@ -1,11 +1,13 @@
 package com.example.IdeaPlanner.model;
 
-// src/main/java/com/example/IdeaPlanner/model/PostDAO.java
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 import jakarta.annotation.PostConstruct;
 
 @Repository
@@ -32,4 +34,14 @@ public class PostDAO {
         obj[4] = post.getDataPrevista();
         jdbc.update(sql, obj);
     }
+
+    public Post mostrarPost(String uuid){
+        String sql = "SELECT * FROM posts where id=?::uuid";
+        return Post.converter(jdbc.queryForMap(sql,uuid));
+	}
+
+    public ArrayList<Post> listarPosts(){
+		String sql = "SELECT * FROM posts";
+		return Post.converterTodos(jdbc.queryForList(sql));
+	}
 }

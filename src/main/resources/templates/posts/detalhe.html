@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Detalhe do Post – IdeaPlanner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body class="app-body">
+
+  <nav class="nav nav--app">
+    <a th:href="@{/}" class="nav__logo">Idea<span>Planner</span></a>
+    <a th:href="@{/posts}" class="nav__back">← Voltar</a>
+  </nav>
+
+  <main class="form-main">
+    <div class="form-card">
+
+      <div class="form-card__header">
+        <div class="detalhe__badges">
+          <span class="badge" th:classappend="'badge--' + ${post.plataforma.toLowerCase()}"
+                th:text="${post.plataforma}"></span>
+          <span class="status-dot" th:classappend="'status--' + ${post.status.toLowerCase()}"
+                th:text="${post.status}"></span>
+        </div>
+        <h1 th:text="${post.titulo}"></h1>
+        <p class="detalhe__data">
+          📅 Data prevista: <strong class="td--data" th:text="${post.dataPrevista}"></strong>
+        </p>
+      </div>
+
+      <div class="detalhe__ideia">
+        <label>Ideia / Descrição</label>
+        <p th:text="${post.ideia}"></p>
+      </div>
+
+      <div class="form-actions">
+        <a th:href="@{/posts}" class="btn btn--ghost">← Voltar</a>
+        <a th:href="@{/posts/{id}/edit(id=${post.id})}" class="btn btn--outline">Editar</a>
+      </div>
+
+    </div>
+  </main>
+
+  <script th:src="@{/js/main.js}"></script>
+</body>
+</html>
