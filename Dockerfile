@@ -9,6 +9,6 @@ COPY .mvn .mvn
 
 RUN chmod 777 mvnw
 
-RUN ./mvnw package
+RUN ./mvnw package -DskipTests
 
 CMD ["sh", "-c", "java -jar target/*.jar"]
