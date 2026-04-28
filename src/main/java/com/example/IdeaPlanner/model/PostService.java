@@ -22,4 +22,12 @@ public class PostService {
     public ArrayList<Post> listarPosts(){
         return postDAO.listarPosts();
     }
+
+    public void atualizarPost(Post post, String uuid){
+        postDAO.atualizarPost(post, uuid);
+    }
+    
+    public void deletarPost(String uuid){
+        postDAO.deletarPost(uuid);
+    }
 }

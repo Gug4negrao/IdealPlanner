@@ -507,6 +507,139 @@ a { color: inherit; text-decoration: none; }
   cursor: pointer;
 }
 
+.th--actions,
+.td--actions {
+  width: 60px;
+  text-align: center;
+}
+
+.form--inline {
+  display: inline;
+  margin: 0;
+}
+
+.btn-icon {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: background 0.15s ease;
+}
+
+.btn-icon:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.btn-icon--danger:hover {
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal--open {
+  display: flex;
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 15, 20, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.modal__content {
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 28px 24px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: modalSlideUp 0.25s ease-out;
+}
+
+.modal__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #fee2e2;
+  color: #dc2626;
+  margin-bottom: 16px;
+}
+
+.modal__title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  margin: 0 0 8px;
+  color: #1a1a1a;
+}
+
+.modal__message {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 24px;
+}
+
+.modal__message strong {
+  color: #1a1a1a;
+}
+
+.modal__actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.modal__actions .btn {
+  min-width: 120px;
+}
+
+/* Botão danger (caso ainda não tenha) */
+.btn--danger {
+  background: #dc2626;
+  color: #fff;
+  border: none;
+}
+
+.btn--danger:hover {
+  background: #b91c1c;
+}
+
+/* Animações */
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ---------- ANIMATIONS ---------- */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }

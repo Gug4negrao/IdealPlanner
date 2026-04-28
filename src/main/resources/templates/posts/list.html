@@ -8,6 +8,24 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
+<div id="confirmModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="confirmModalTitle">
+  <div class="modal__backdrop" data-modal-close></div>
+  <div class="modal__content" role="document">
+    <div class="modal__icon">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z"/>
+      </svg>
+    </div>
+    <h2 id="confirmModalTitle" class="modal__title">Excluir ideia?</h2>
+    <p class="modal__message">
+      Tem certeza que deseja excluir <strong id="confirmModalItem"></strong>? Esta ação não pode ser desfeita.
+    </p>
+    <div class="modal__actions">
+      <button type="button" class="btn btn--ghost" data-modal-close>Cancelar</button>
+      <button type="button" class="btn btn--danger" id="confirmModalConfirm">Sim, excluir</button>
+    </div>
+  </div>
+</div>
 <body class="app-body">
 
   <nav class="nav nav--app">
@@ -30,39 +48,52 @@
 
     <div class="table-wrap">
       <table class="posts-table">
-        <thead>
-          <tr>
-            <th>Título</th>
-            <th>Plataforma</th>
-            <th>Status</th>
-            <th>Data prevista</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="post : ${posts}" 
-              th:data-status="${post.status}"
-              th:data-href="@{/posts/{id}(id=${post.id})}"
-              class="tr--clickable">       
-            <td class="td--title" th:text="${post.titulo}"></td>
-            <td>
-              <span class="badge"
-                    th:classappend="'badge--' + ${post.plataforma.toLowerCase()}"
-                    th:text="${post.plataforma}"></span>
-            </td>
-            <td>
-              <span class="status-dot"
-                    th:classappend="'status--' + ${post.status.toLowerCase()}"
-                    th:text="${post.status}"></span>
-            </td>
-            <td class="td--data" th:text="${post.dataPrevista}"></td>
-          </tr>
-          <tr th:if="${posts.isEmpty()}">
-            <td colspan="4" class="td--empty">
-              Nenhum conteúdo ainda. <a th:href="@{/posts/new}">Criar primeira ideia →</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Plataforma</th>
+      <th>Status</th>
+      <th>Data prevista</th>
+      <th class="th--actions">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="post : ${posts}" 
+        th:data-status="${post.status}"
+        th:data-href="@{/posts/{id}(id=${post.id})}"
+        class="tr--clickable">       
+      <td class="td--title" th:text="${post.titulo}"></td>
+      <td>
+        <span class="badge"
+              th:classappend="'badge--' + ${post.plataforma.toLowerCase()}"
+              th:text="${post.plataforma}"></span>
+      </td>
+      <td>
+        <span class="status-dot"
+              th:classappend="'status--' + ${post.status.toLowerCase()}"
+              th:text="${post.status}"></span>
+      </td>
+      <td class="td--data" th:text="${post.dataPrevista}"></td>
+      <td class="td--actions" onclick="event.stopPropagation();">
+        <form th:action="@{/post/{id}/delete(id=${post.id})}" 
+              th:method="post"
+              th:data-titulo="${post.titulo}"
+              class="form--inline form--delete">
+          <button type="submit" class="btn-icon btn-icon--danger" 
+                  title="Excluir ideia"
+                  aria-label="Excluir ideia">
+            🗑️
+          </button>
+        </form>
+      </td>
+    </tr>
+    <tr th:if="${posts.isEmpty()}">
+      <td colspan="5" class="td--empty">
+        Nenhum conteúdo ainda. <a th:href="@{/posts/new}">Criar primeira ideia →</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
     </div>
   </main>
 

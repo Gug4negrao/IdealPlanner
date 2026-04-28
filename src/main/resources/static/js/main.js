@@ -56,3 +56,51 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+(function () {
+  const modal = document.getElementById('confirmModal');
+  if (!modal) return;
+
+  const itemLabel = document.getElementById('confirmModalItem');
+  const confirmBtn = document.getElementById('confirmModalConfirm');
+  let pendingForm = null;
+
+  function openModal(form) {
+    pendingForm = form;
+    itemLabel.textContent = `${form.dataset.titulo}`;
+    modal.classList.add('modal--open');
+    modal.setAttribute('aria-hidden', 'false');
+    confirmBtn.focus();
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    pendingForm = null;
+    modal.classList.remove('modal--open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.form--delete').forEach(form => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      openModal(form);
+    });
+  });
+
+  confirmBtn.addEventListener('click', () => {
+    if (pendingForm) {
+      pendingForm.submit();
+    }
+  });
+
+  modal.querySelectorAll('[data-modal-close]').forEach(el => {
+    el.addEventListener('click', closeModal);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('modal--open')) {
+      closeModal();
+    }
+  });
+})();

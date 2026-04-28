@@ -18,11 +18,15 @@
   <main class="form-main">
     <div class="form-card">
       <div class="form-card__header">
-        <h1>Nova ideia</h1>
-        <p>Capture sua ideia antes que ela escape.</p>
+        <h1 th:text="${post.id != null} ? 'Editar ideia' : 'Nova ideia'">Nova ideia</h1>
+      <p th:text="${post.id != null} 
+                  ? 'Atualize os detalhes da sua ideia.' 
+                  : 'Capture sua ideia antes que ela escape.'">
+        Capture sua ideia antes que ela escape.
+      </p>
       </div>
 
-      <form action="#" th:action="@{/post}" method=post th:object="${post}" class="idea-form">
+      <form action="#" th:action="${post.id != null} ? @{/post/{id}(id=${post.id})} : @{/post}" method=post th:object="${post}" class="idea-form">
 
         <div class="form-group">
           <label for="titulo">Título</label>
