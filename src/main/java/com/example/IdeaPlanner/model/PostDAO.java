@@ -23,15 +23,16 @@ public class PostDAO {
         jdbc = new JdbcTemplate(dataSource);
     }
 
-    public void inserirPost(Post post) {
-        String sql = "INSERT INTO posts (titulo, ideia, plataforma, status, data_prevista)" +
-                     " VALUES (?,?,?,?,?)";
-        Object[] obj = new Object[5];
+    public void inserirPost(Post post, String usuarioId) {
+        String sql = "INSERT INTO posts (titulo, ideia, plataforma, status, data_prevista, usuario_id)" +
+                     " VALUES (?,?,?,?,?,?::uuid)";
+        Object[] obj = new Object[6];
         obj[0] = post.getTitulo();
         obj[1] = post.getIdeia();
         obj[2] = post.getPlataforma();
         obj[3] = post.getStatus();
         obj[4] = post.getDataPrevista();
+        obj[5] = usuarioId;
         jdbc.update(sql, obj);
     }
 
@@ -40,9 +41,9 @@ public class PostDAO {
         return Post.converter(jdbc.queryForMap(sql,uuid));
 	}
 
-    public ArrayList<Post> listarPosts(){
-		String sql = "SELECT * FROM posts";
-		return Post.converterTodos(jdbc.queryForList(sql));
+    public ArrayList<Post> listarPosts(String usuarioId){
+		String sql = "SELECT * FROM posts WHERE usuario_id = ?::uuid";
+		return Post.converterTodos(jdbc.queryForList(sql, usuarioId));
 	}
 
     public void atualizarPost(Post post, String uuid){

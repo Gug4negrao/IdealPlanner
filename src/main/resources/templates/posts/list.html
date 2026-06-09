@@ -30,7 +30,12 @@
 
   <nav class="nav nav--app">
     <a th:href="@{/}" class="nav__logo">Idea<span>Planner</span></a>
-    <a th:href="@{/posts/new}" class="btn btn--primary btn--sm">+ Nova ideia</a>
+    <div class="nav__actions">
+      <a th:href="@{/posts/new}" class="btn btn--primary btn--sm">+ Nova ideia</a>
+      <form th:action="@{/logout}" method="post" class="form--inline">
+        <button type="submit" class="btn btn--ghost btn--sm">Sair</button>
+      </form>
+    </div>
   </nav>
 
   <main class="app-main">

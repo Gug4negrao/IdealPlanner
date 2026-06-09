@@ -15,6 +15,7 @@ public class Post {
     private String plataforma;
     private String status;
     private String dataPrevista;
+    private String usuarioId;
 
     // Construtor vazio — usado pelo formulário
     public Post() {}
@@ -55,6 +56,9 @@ public class Post {
 
     public String getDataPrevista() { return dataPrevista; }
     public void setDataPrevista(String dataPrevista) { this.dataPrevista = dataPrevista; }
+
+    public String getUsuarioId() { return usuarioId; }
+    public void setUsuarioId(String usuarioId) { this.usuarioId = usuarioId; }
 
     public static Post converter(Map<String,Object> registro){
         UUID id = (UUID) registro.get("id");

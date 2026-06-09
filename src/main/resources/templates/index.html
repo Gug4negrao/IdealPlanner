@@ -11,7 +11,10 @@
 <body>
   <nav class="nav">
     <div class="nav__logo">Idea<span>Planner</span></div>
-    <a th:href="@{/posts}" class="nav__cta">Acessar app →</a>
+    <div class="nav__actions">
+      <a th:href="@{/cadastro}" class="btn btn--ghost btn--sm">Cadastrar</a>
+      <a th:href="@{/login}" class="btn btn--primary btn--sm">Entrar</a>
+    </div>
   </nav>
   <section class="hero">
     <div class="hero__eyebrow">Planejamento de conteúdo</div>

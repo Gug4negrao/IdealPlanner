@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Entrar – IdeaPlanner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+  <nav class="nav">
+    <a th:href="@{/}" class="nav__logo">Idea<span>Planner</span></a>
+  </nav>
+
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <h1 class="auth-card__title">Entrar</h1>
+      <p class="auth-card__sub">Acesse suas ideias de conteúdo</p>
+
+      <div th:if="${param.error}" class="alert alert--error">Email ou senha inválidos.</div>
+      <div th:if="${param.cadastrado}" class="alert alert--success">Cadastro realizado! Faça login.</div>
+
+      <form th:action="@{/login}" method="post" class="auth-form">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="username" placeholder="seu@email.com" required />
+        </div>
+        <div class="form-group">
+          <label>Senha</label>
+          <input type="password" name="password" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn btn--primary auth-form__submit">Entrar</button>
+      </form>
+
+      <p class="auth-link">Não tem conta? <a th:href="@{/cadastro}">Cadastre-se</a></p>
+    </div>
+  </div>
+</body>
+</html>

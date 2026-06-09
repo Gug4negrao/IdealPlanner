@@ -4,5 +4,8 @@ CREATE TABLE IF NOT EXISTS posts (
     ideia         TEXT,
     plataforma    VARCHAR(50),
     status        VARCHAR(50),
-    data_prevista VARCHAR(20)
+    data_prevista VARCHAR(20),
+    usuario_id    UUID REFERENCES usuarios(id)
 );
+
+ALTER TABLE posts ADD COLUMN IF NOT EXISTS usuario_id UUID REFERENCES usuarios(id);

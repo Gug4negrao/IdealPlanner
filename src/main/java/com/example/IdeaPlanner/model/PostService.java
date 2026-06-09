@@ -11,16 +11,16 @@ public class PostService {
     @Autowired
     PostDAO postDAO;
 
-    public void inserirPost(Post post) {
-        postDAO.inserirPost(post);
+    public void inserirPost(Post post, String usuarioId) {
+        postDAO.inserirPost(post, usuarioId);
     }
 
-     public Post mostrarPost(String uuid){
+    public Post mostrarPost(String uuid){
         return postDAO.mostrarPost(uuid);
     }
 
-    public ArrayList<Post> listarPosts(){
-        return postDAO.listarPosts();
+    public ArrayList<Post> listarPosts(String usuarioId){
+        return postDAO.listarPosts(usuarioId);
     }
 
     public void atualizarPost(Post post, String uuid){
