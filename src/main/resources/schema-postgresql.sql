@@ -6,4 +6,4 @@ CREATE TABLE IF NOT EXISTS posts (
     status        VARCHAR(50),
     data_prevista VARCHAR(20)
 );
- 
+ se
