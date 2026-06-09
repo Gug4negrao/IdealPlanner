@@ -1,3 +1,21 @@
+// --- Dropdown de perfil ---
+(function () {
+  const btn = document.getElementById('profileBtn');
+  const dropdown = document.getElementById('profileDropdown');
+  if (!btn || !dropdown) return;
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = dropdown.classList.toggle('profile-dropdown--open');
+    btn.setAttribute('aria-expanded', open);
+  });
+
+  document.addEventListener('click', () => {
+    dropdown.classList.remove('profile-dropdown--open');
+    btn.setAttribute('aria-expanded', 'false');
+  });
+})();
+
 // --- Filtro de status na listagem ---
 document.addEventListener('DOMContentLoaded', () => {
   const filterBtns = document.querySelectorAll('.filter-btn');

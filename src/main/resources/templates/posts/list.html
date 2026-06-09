@@ -8,33 +8,24 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
-<div id="confirmModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="confirmModalTitle">
-  <div class="modal__backdrop" data-modal-close></div>
-  <div class="modal__content" role="document">
-    <div class="modal__icon">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z"/>
-      </svg>
-    </div>
-    <h2 id="confirmModalTitle" class="modal__title">Excluir ideia?</h2>
-    <p class="modal__message">
-      Tem certeza que deseja excluir <strong id="confirmModalItem"></strong>? Esta ação não pode ser desfeita.
-    </p>
-    <div class="modal__actions">
-      <button type="button" class="btn btn--ghost" data-modal-close>Cancelar</button>
-      <button type="button" class="btn btn--danger" id="confirmModalConfirm">Sim, excluir</button>
-    </div>
-  </div>
-</div>
 <body class="app-body">
 
   <nav class="nav nav--app">
     <a th:href="@{/}" class="nav__logo">Idea<span>Planner</span></a>
     <div class="nav__actions">
       <a th:href="@{/posts/new}" class="btn btn--primary btn--sm">+ Nova ideia</a>
-      <form th:action="@{/logout}" method="post" class="form--inline">
-        <button type="submit" class="btn btn--ghost btn--sm">Sair</button>
-      </form>
+      <div class="nav__profile">
+        <span class="nav__name" th:text="${nomeUsuario}"></span>
+        <div class="nav__avatar-wrap">
+          <button class="nav__avatar" id="profileBtn" aria-expanded="false"
+                  th:text="${#strings.substring(nomeUsuario, 0, 1)}"></button>
+          <div class="profile-dropdown" id="profileDropdown">
+            <form th:action="@{/logout}" method="post">
+              <button type="submit" class="dropdown-item dropdown-item--danger">Sair</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -63,10 +54,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr th:each="post : ${posts}" 
+    <tr th:each="post : ${posts}"
         th:data-status="${post.status}"
         th:data-href="@{/posts/{id}(id=${post.id})}"
-        class="tr--clickable">       
+        class="tr--clickable">
       <td class="td--title" th:text="${post.titulo}"></td>
       <td>
         <span class="badge"
@@ -80,11 +71,11 @@
       </td>
       <td class="td--data" th:text="${post.dataPrevista}"></td>
       <td class="td--actions" onclick="event.stopPropagation();">
-        <form th:action="@{/post/{id}/delete(id=${post.id})}" 
+        <form th:action="@{/post/{id}/delete(id=${post.id})}"
               th:method="post"
               th:data-titulo="${post.titulo}"
               class="form--inline form--delete">
-          <button type="submit" class="btn-icon btn-icon--danger" 
+          <button type="submit" class="btn-icon btn-icon--danger"
                   title="Excluir ideia"
                   aria-label="Excluir ideia">
             🗑️
@@ -101,6 +92,25 @@
 </table>
     </div>
   </main>
+
+  <div id="confirmModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="confirmModalTitle">
+    <div class="modal__backdrop" data-modal-close></div>
+    <div class="modal__content" role="document">
+      <div class="modal__icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z"/>
+        </svg>
+      </div>
+      <h2 id="confirmModalTitle" class="modal__title">Excluir ideia?</h2>
+      <p class="modal__message">
+        Tem certeza que deseja excluir <strong id="confirmModalItem"></strong>? Esta ação não pode ser desfeita.
+      </p>
+      <div class="modal__actions">
+        <button type="button" class="btn btn--ghost" data-modal-close>Cancelar</button>
+        <button type="button" class="btn btn--danger" id="confirmModalConfirm">Sim, excluir</button>
+      </div>
+    </div>
+  </div>
 
   <script th:src="@{/js/main.js}"></script>
 </body>

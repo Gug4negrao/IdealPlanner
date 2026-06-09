@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -12,8 +12,22 @@
   <nav class="nav">
     <div class="nav__logo">Idea<span>Planner</span></div>
     <div class="nav__actions">
-      <a th:href="@{/cadastro}" class="btn btn--ghost btn--sm">Cadastrar</a>
-      <a th:href="@{/login}" class="btn btn--primary btn--sm">Entrar</a>
+      <a sec:authorize="isAuthenticated()" th:href="@{/posts}" class="btn btn--ghost btn--sm hide-mobile">Meus conteúdos</a>
+      <div sec:authorize="isAuthenticated()" class="nav__profile">
+        <span class="nav__name" th:text="${nomeUsuario}"></span>
+        <div class="nav__avatar-wrap">
+          <button class="nav__avatar" id="profileBtn" aria-expanded="false"
+                  th:text="${#strings.substring(nomeUsuario, 0, 1)}"></button>
+          <div class="profile-dropdown" id="profileDropdown">
+            <a th:href="@{/posts}" class="dropdown-item">Meus conteúdos</a>
+            <form th:action="@{/logout}" method="post">
+              <button type="submit" class="dropdown-item dropdown-item--danger">Sair</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <a sec:authorize="!isAuthenticated()" th:href="@{/cadastro}" class="btn btn--ghost btn--sm">Cadastrar</a>
+      <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="btn btn--primary btn--sm">Entrar</a>
     </div>
   </nav>
   <section class="hero">

@@ -12,7 +12,22 @@
 
   <nav class="nav nav--app">
     <a th:href="@{/}" class="nav__logo">Idea<span>Planner</span></a>
-    <a th:href="@{/posts}" class="nav__back">← Voltar</a>
+    <div class="nav__actions">
+      <a th:href="@{/posts}" class="nav__back">← Voltar</a>
+      <div class="nav__profile">
+        <span class="nav__name" th:text="${nomeUsuario}"></span>
+        <div class="nav__avatar-wrap">
+          <button class="nav__avatar" id="profileBtn" aria-expanded="false"
+                  th:text="${#strings.substring(nomeUsuario, 0, 1)}"></button>
+          <div class="profile-dropdown" id="profileDropdown">
+            <a th:href="@{/posts}" class="dropdown-item">Meus conteúdos</a>
+            <form th:action="@{/logout}" method="post">
+              <button type="submit" class="dropdown-item dropdown-item--danger">Sair</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </nav>
 
   <main class="form-main">
